@@ -10,17 +10,16 @@ class Solution(object):
         :type head: ListNode
         :rtype: bool
         """
-        if not head or not head.next: ## it can be null 
+        if not head or not head.next: # no data or only one node
             return False
 
-        slow = head.next # 1 step 
-        fast = head.next.next # 2 step
+        slow = head # init first pointer 
+        fast = head.next # init next pointer
 
-        while slow != fast: # eventually see same ppointer if hasCycle
-            if not slow or not slow.next: # not hasCycle
-                return False
-
+        while fast: # fast exist
+            if slow == fast: # eventually see same pointer is cycle 
+                return True
             slow = slow.next # 1 step 
             fast = fast.next.next # 2 step
 
-        return True
+        return False # no cycle 
