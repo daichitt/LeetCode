@@ -6,18 +6,16 @@
 class Solution(object):
     def deleteDuplicates(self, head):
         """
-        :type head: ListNode
-        :rtype: ListNode
+        :type head: Optional[ListNode]
+        :rtype: Optional[ListNode]
         """
-        current = head #points to front of linked list
 
-        while current.next: # until next exist 
-            if current.val == current.next.val:
-                current.next = current.next.next # set next = next.next (skip)
-            else:  # not deplicate
-                current = current.next
+        curr = head
 
+        while curr.next: 
+            if curr.val == curr.next.val:
+                curr.next = curr.next.next # 2 step (Slok deplicated Node)
+            else:
+                curr = curr.next # 1 step 
+        
         return head
-
-        
-        
