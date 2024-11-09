@@ -10,16 +10,18 @@ class Solution(object):
         :type head: ListNode
         :rtype: bool
         """
-        if not head or not head.next: # no data or only one node
+        if  not head or not head.next:
             return False
 
-        slow = head # init first pointer 
-        fast = head.next # init next pointer
+        slow = head.next
+        fast = head.next.next
 
-        while fast: # fast exist
-            if slow == fast: # eventually see same pointer is cycle 
+        while slow != fast: # if see same pointor
+            if slow == fast: # see same pointor
                 return True
-            slow = slow.next # 1 step 
-            fast = fast.next.next # 2 step
+            else:
+                slow = slow.next # 1 step
+                fast = fast.next.next # 2 step
 
-        return False # no cycle 
+        return True 
+        
