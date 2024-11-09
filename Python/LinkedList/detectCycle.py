@@ -10,31 +10,23 @@ class Solution(object):
         :type head: ListNode
         :rtype: ListNode
         """
-        # No Cycle return None
-        if not head or not head.next:
+        if not head or not head.next: 
             return None
-        
-        slow = head # 1 step 
-        fast = head # 1 step
 
-        #
+        slow = head # start with 0nd Node
+        fast = head.next # start with 1nd Node 
+
         while True:
-            if not fast or not fast.next:
-                # No Cycle return None
-                return None
-
-            fast = fast.next.next # 2 step
-            slow = slow.next # 1 step
-
-            if fast == slow: # if has Cycle
+            if slow.val == fast.val: # see same pointor
                 break
-        
-        # init fast pointor
-        fast = head
+            else:
+                slow = slow.next # 1 step
+                fast = fast.next.next # 2 step
 
-        # サイクル内で交差した地点から、両ポインタが同じノードに到達するまでには、必ずサイクルの開始点に向かうように進むためです。(同じ距離進む)
-        while fast != slow:
-            fast = fast.next
-            slow = slow.next
-        
+        # init fast pointor
+        fast = head  # bask to 0nd Node
+
+        while fast != slow: # not see the same pointor
+            slow = slow.next # 1 step
+            fast = fast.next.next # 2 step
         return slow
