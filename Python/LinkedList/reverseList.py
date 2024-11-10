@@ -6,15 +6,19 @@
 class Solution(object):
     def reverseList(self, head):
         """
-        :type head: ListNode
-        :rtype: ListNode
+        :type head: Optional[ListNode]
+        :rtype: Optional[ListNode]
         """
-        prev = None
-        curr = head
+        prevNode = None
+        currNode = head
 
-        while curr:
-            temp = curr.next
-            curr.next = prev
-            prev = curr
-            curr = temp
-        return prev
+        while currNode:
+            nextNode = currNode.next  # 次のノードを保存 → 
+            currNode.next = prevNode  # 現在のノードの次を前のノードに変更 ←
+            prevNode = currNode  # 前のノードを現在のノードに更新 →
+            currNode = nextNode  # 現在のノードを次のノードに更新 → 
+
+        return prevNode
+
+        # Time: O(n)
+        # Space: O(1)
