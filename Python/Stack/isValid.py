@@ -4,18 +4,22 @@ class Solution(object):
         :type s: str
         :rtype: bool
         """
+        # use hash map (dict) # time O(n)
         stack = []
-        pairs = {
-            '(': ')',
-            '{': '}',
-            '[': ']'
-        }
-        # Stack use LIFO
-        for bracket in s:
-            if bracket in pairs: # bracket is in key in pairs dict (open parentheses)
-                stack.append(bracket) #
-            elif len(stack) == 0 or bracket != pairs[stack.pop()]:# check close bracket and poped 
-                return False
 
-        return len(stack) == 0
+        brackets = {
+            '(' : ')', 
+            '{' : '}',
+            '[' : ']', 
+        }
+
+        for braket in s:
+            if braket in brackets.keys(): # key  such as '('
+                stack.append(braket)
+            elif braket in brackets.values():
+                if not stack or brackets[stack.pop()] != braket:
+                    return False
         
+        return len(stack) == 0
+
+        # check keys() and values()
